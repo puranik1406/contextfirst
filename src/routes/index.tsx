@@ -18,7 +18,7 @@ export const Route = createFileRoute("/")({
     context.queryClient.prefetchQuery(topicsQuery());
   },
   component: Home,
-  errorComponent: PageError,
+  errorComponent: ({ error }) => <PageError error={error} />,
 });
 
 function Home() {
