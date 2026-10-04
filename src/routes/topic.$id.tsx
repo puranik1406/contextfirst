@@ -21,7 +21,7 @@ export const Route = createFileRoute("/topic/$id")({
   },
   component: TopicPage,
   pendingComponent: () => <div className="mx-auto max-w-4xl space-y-4 px-4 py-16"><Skeleton className="h-10 w-2/3" /><Skeleton className="h-32" /><Skeleton className="h-64" /></div>,
-  errorComponent: PageError,
+  errorComponent: ({ error }) => <PageError error={error} />,
   notFoundComponent: () => (
     <div className="mx-auto max-w-xl px-4 py-24 text-center">
       <h1 className="text-3xl font-semibold">Topic not found</h1>
@@ -173,6 +173,7 @@ function Perspectives({ items }: { items: Perspective[] }) {
   const [active, setActive] = useState(0);
   if (!items.length) return <Empty text="No perspectives recorded yet." />;
   const p = items[active] ?? items[0];
+  if (!p) return null;
   return (
     <div>
       <div className="mb-4 flex flex-wrap gap-2">

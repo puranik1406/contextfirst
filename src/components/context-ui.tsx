@@ -112,7 +112,7 @@ export function Empty({ text }: { text: string }) {
   return <div className="rounded-lg border border-dashed p-8 text-center text-sm text-muted-foreground">{text}</div>;
 }
 
-export function PageError({ error }: { error: Error }) {
+export function PageError({ error }: { error: Error; reset?: () => void }) {
   return (
     <div className="mx-auto max-w-xl px-4 py-24 text-center">
       <h1 className="text-3xl font-semibold">Couldn't load this page</h1>

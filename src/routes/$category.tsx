@@ -19,7 +19,7 @@ export const Route = createFileRoute("/$category")({
     return { meta: [{ title }, { name: "description", content: desc }, { property: "og:title", content: title }, { property: "og:description", content: desc }] };
   },
   component: CategoryPage,
-  errorComponent: PageError,
+  errorComponent: ({ error }) => <PageError error={error} />,
   notFoundComponent: () => (
     <div className="mx-auto max-w-xl px-4 py-24 text-center">
       <h1 className="text-3xl font-semibold">No such section</h1>
