@@ -14,7 +14,234 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      articles: {
+        Row: {
+          created_at: string
+          id: string
+          perspective: string | null
+          published_at: string
+          source_name: string
+          source_type: string
+          source_url: string | null
+          summary: string | null
+          title: string
+          topic_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          perspective?: string | null
+          published_at?: string
+          source_name: string
+          source_type: string
+          source_url?: string | null
+          summary?: string | null
+          title: string
+          topic_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          perspective?: string | null
+          published_at?: string
+          source_name?: string
+          source_type?: string
+          source_url?: string | null
+          summary?: string | null
+          title?: string
+          topic_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "articles_topic_id_fkey"
+            columns: ["topic_id"]
+            isOneToOne: false
+            referencedRelation: "topics"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      perspectives: {
+        Row: {
+          content: string
+          created_at: string
+          evidence: string | null
+          id: string
+          perspective_name: string
+          source_name: string | null
+          title: string
+          topic_id: string
+        }
+        Insert: {
+          content: string
+          created_at?: string
+          evidence?: string | null
+          id?: string
+          perspective_name: string
+          source_name?: string | null
+          title: string
+          topic_id: string
+        }
+        Update: {
+          content?: string
+          created_at?: string
+          evidence?: string | null
+          id?: string
+          perspective_name?: string
+          source_name?: string | null
+          title?: string
+          topic_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "perspectives_topic_id_fkey"
+            columns: ["topic_id"]
+            isOneToOne: false
+            referencedRelation: "topics"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      statistics: {
+        Row: {
+          as_of_date: string | null
+          category: string
+          change_direction: string | null
+          change_value: string | null
+          created_at: string
+          featured: boolean
+          id: string
+          metric_type: string | null
+          name: string
+          sort_order: number
+          source_name: string | null
+          source_url: string | null
+          unit: string | null
+          value: string
+        }
+        Insert: {
+          as_of_date?: string | null
+          category: string
+          change_direction?: string | null
+          change_value?: string | null
+          created_at?: string
+          featured?: boolean
+          id?: string
+          metric_type?: string | null
+          name: string
+          sort_order?: number
+          source_name?: string | null
+          source_url?: string | null
+          unit?: string | null
+          value: string
+        }
+        Update: {
+          as_of_date?: string | null
+          category?: string
+          change_direction?: string | null
+          change_value?: string | null
+          created_at?: string
+          featured?: boolean
+          id?: string
+          metric_type?: string | null
+          name?: string
+          sort_order?: number
+          source_name?: string | null
+          source_url?: string | null
+          unit?: string | null
+          value?: string
+        }
+        Relationships: []
+      }
+      timeline_events: {
+        Row: {
+          created_at: string
+          description: string | null
+          event_date: string
+          id: string
+          source_name: string | null
+          source_url: string | null
+          title: string
+          topic_id: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          event_date: string
+          id?: string
+          source_name?: string | null
+          source_url?: string | null
+          title: string
+          topic_id: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          event_date?: string
+          id?: string
+          source_name?: string | null
+          source_url?: string | null
+          title?: string
+          topic_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "timeline_events_topic_id_fkey"
+            columns: ["topic_id"]
+            isOneToOne: false
+            referencedRelation: "topics"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      topics: {
+        Row: {
+          category: string
+          claimed: string[]
+          created_at: string
+          disputed: string[]
+          established: string[]
+          id: string
+          image_url: string | null
+          key_facts: string[]
+          published_at: string
+          summary: string
+          title: string
+          trend_score: number
+          why_it_matters: string[]
+        }
+        Insert: {
+          category: string
+          claimed?: string[]
+          created_at?: string
+          disputed?: string[]
+          established?: string[]
+          id?: string
+          image_url?: string | null
+          key_facts?: string[]
+          published_at?: string
+          summary: string
+          title: string
+          trend_score?: number
+          why_it_matters?: string[]
+        }
+        Update: {
+          category?: string
+          claimed?: string[]
+          created_at?: string
+          disputed?: string[]
+          established?: string[]
+          id?: string
+          image_url?: string | null
+          key_facts?: string[]
+          published_at?: string
+          summary?: string
+          title?: string
+          trend_score?: number
+          why_it_matters?: string[]
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
